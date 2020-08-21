@@ -1,0 +1,51 @@
+﻿@using MyImdb.ViewModels
+@model List<MovieListViewModel>
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @if (ViewBag.Message != null) {
+            <div class="alert alert-info">
+                <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
+            </div>
+        }
+        <h1><span class="fas fa-film"></span> Movies</h1>
+        <br />
+        <table class="table table-striped" border="1">
+            <tr>
+                <th>Rank</th>
+                <th>Title</th>
+                <th>Year</th>
+            </tr>
+            @foreach (var movie in Model) {
+                <tr>
+                    <td>@movie.Rank</td>
+                    <td>@movie.Title</td>
+                    <td>@movie.Year</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+
+    @*@Html.ActionLink("Add a new movie", "Create", "Movie", new { area = "" }, new { @class = "btn btn-default" })*@
+    
+    <a href="@Url.Action("Create", "Movie")" class="btn btn-warning">
+        <i class="fas fa-plus-square"></i>
+        <span>
+            <strong>Create</strong>
+        </span>
+    </a>
+
+</body>
+</html>

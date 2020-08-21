@@ -1,0 +1,60 @@
+﻿@model MyImdb.ViewModels.MovieCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2><span class="fas fa-film"></span> Add a new movie</h2>
+<h4>Please fill the movie data to add a new movie:</h4>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div id="client" class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div id ="create-form" class="form-group">
+            @Html.LabelFor(model => model.Rank, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rank, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StoryLine, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StoryLine, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StoryLine, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="button" value="Discard" class="btn btn-default" onclick="resetForm()">
+            </div>
+
+        </div>
+    </div>
+    }
+
+    <div>
+       @Html.ActionLink("<< Back to movies list", "Index")
+    </div>
