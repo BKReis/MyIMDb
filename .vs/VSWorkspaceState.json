@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "\\BusinessLogic",
+    "\\MyImdb",
+    "\\MyImdb\\Controllers",
+    "\\MyImdb\\ViewModels",
+    "\\MyImdb\\Views",
+    "\\MyImdb\\Views\\Movie"
   ],
   "PreviewInSolutionExplorer": false
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace MyImdb.ViewModels {
     public class MovieCreateViewModel {
@@ -19,5 +20,9 @@ namespace MyImdb.ViewModels {
         [MaxLength(200, ErrorMessage = "Storyline can't be greater than {1} characters")]
         [DataType(DataType.MultilineText)]
         public string StoryLine { get; set; }
+        public List<GenreViewModel> Genres { get; set; }
+        [DisplayName("Genre")]
+        [Required(ErrorMessage = "The genre must be selected.")]
+        public Guid SelectedGenreId { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model List<MyImdb.ViewModels.ActorViewModel>
+@{
+    ViewBag.Title = "Actors"; }
+<br />
+<h1><span class="fas fa-users"></span> Actors</h1>
+@if (Model.Count < 1) {
+    <p>There are no registered Actors yet.</p>
+}
+else {
+    if (ViewBag.Message != null) {
+        <div class="alert alert-info">
+            <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
+        </div>
+    }
+    <p>Registered actors:</p>
+    <ul style="margin-top: 20px;">
+        @foreach (var actor in Model) {
+            <li style="margin-top: 15px;"><a href="/Actor/Edit/@actor.Id">@actor.Name</a></li>
+        }
+    </ul>
+}
+
+<div style="margin-top: 20px;">
+    <a href="/Actor/Create" class="btn btn-warning"><i class="fa fa-plus"></i>&nbsp;Add actor</a>
+</div>

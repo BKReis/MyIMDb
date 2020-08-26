@@ -77,3 +77,17 @@ C:\Projetos\MyImdb\MyImdb\bin\WebGrease.dll
 C:\Projetos\MyImdb\MyImdb\bin\Antlr3.Runtime.pdb
 C:\Projetos\MyImdb\MyImdb\bin\Newtonsoft.Json.xml
 C:\Projetos\MyImdb\MyImdb\bin\System.Web.Optimization.xml
+C:\Projetos\MyImdb\MyImdb\bin\BusinessLogic.dll
+C:\Projetos\MyImdb\MyImdb\bin\BusinessLogic.pdb
+C:\Projetos\MyImdb\MyImdb\bin\EntityFramework.dll
+C:\Projetos\MyImdb\MyImdb\bin\EntityFramework.SqlServer.dll
+C:\Projetos\MyImdb\MyImdb\bin\BusinessLogic.dll.config
+C:\Projetos\MyImdb\MyImdb\bin\EntityFramework.xml
+C:\Projetos\MyImdb\MyImdb\bin\EntityFramework.SqlServer.xml
+C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.dll
+C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.Security.dll
+C:\Projetos\MyImdb\MyImdb\bin\Owin.dll
+C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.xml
+C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.Security.xml

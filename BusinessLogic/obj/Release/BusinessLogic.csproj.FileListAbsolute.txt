@@ -1,0 +1,15 @@
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\BusinessLogic.dll.config
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\BusinessLogic.dll
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\BusinessLogic.pdb
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\EntityFramework.dll
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\EntityFramework.SqlServer.dll
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\EntityFramework.xml
+C:\Projetos\MyImdb\BusinessLogic\bin\Release\EntityFramework.SqlServer.xml
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.csprojAssemblyReference.cache
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.Migrations.Initial.resources
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.Migrations.Actors.resources
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.csproj.GenerateResource.cache
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.csproj.CopyComplete
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.dll
+C:\Projetos\MyImdb\BusinessLogic\obj\Release\BusinessLogic.pdb
