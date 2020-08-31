@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null; }
+<form name="favoriteGenreForm" ng-submit="submit(favoriteGenreForm)" novalidate>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Select your favorite genre</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal top-space-xl">
+            <div form-group="id">
+                <label for="genreName" class="col-sm-2 control-label">Genre:</label>
+                <div class="col-md-6">
+                    <select id="genreName" class="form-control" name="id" ng-model="genre.id" ng-options="genre.id as genre.name for genre in genres" required></select>
+                    <p error="id" type="required">Please select the genre.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

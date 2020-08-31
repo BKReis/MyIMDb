@@ -33,10 +33,10 @@ namespace BusinessLogic {
             return actor;
         }
 
-        public static List<String> CharactersRelation(Guid id, ApplicationDbContext db) {
-            var characters = db.MovieActors.Where(c => c.ActorId == id).ToList();
+        public static List<string> CharactersRelation(Guid id, ApplicationDbContext db) {
+            var characters = db.MovieActors.Where(c => c.ActorId == id).Select(m => m.Character).ToList();
 
-            return characters.Select(m => (string)m.Character).ToList();
+            return characters;
         }
         #endregion
 

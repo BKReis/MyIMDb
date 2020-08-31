@@ -1,8 +1,7 @@
-﻿@using MyImdb.ViewModels
-@model List<MovieListViewModel>
-@{
-    
-}
+﻿@using System.Web.Optimization @{
+    ViewBag.Title = "Movies"; }
+@section libs { @Scripts.Render("~/bundles/movies")
+@Scripts.Render("~/bundles/dialog") }
 
 <!DOCTYPE html>
 
@@ -13,41 +12,65 @@
     <title>Index</title>
 </head>
 <body>
-    <div>
-        @if (Model.Count < 1) {
-            <h1>There are no registered Movies yet.</h1>
-            <br />
-        } else {
-            <br />
-            if (ViewBag.Message != null) {
-                <div class="alert alert-info">
-                    <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
-                </div>
-            }
-            <h1><span class="fas fa-film"></span> Movies</h1>
-            <br />
-            <table class="table table-striped">
+    <div ng-controller="moviesController" block-ui="moviesContentDiv">
+        <!--<div ng-show="movies.length < 1">
+        <p>There are no registered Movies yet.</p>
+    </div>
+    <div ng-hide="movies.length < 1">
+        <br />-->
+        @*<div ng-show="ViewBag.Message != null" class="alert alert-info">
+            <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
+        </div>*@
+
+        <!--<h1><span class="fas fa-film"></span> Movies</h1>
+        <br />
+        <table class="table table-striped">
+            <tr>
+                <th>Title</th>
+                <th>Rank</th>
+                <th>Year</th>
+                <th>Genre</th>
+            </tr>
+            <tbody ng-repeat="movie in movies">
                 <tr>
-                    <th>Title</th>
-                    <th>Rank</th>
-                    <th>Year</th>
-                    <th>Genre</th>
+                    <td><a href="/Movie/Details/{{movie.id}}"> {{movie.title}}</a></td>
+                    <td>{{movie.rank}}</td>
+                    <td>{{movie.year}}</td>
+                    <td>{{movie.genre}}</td>
                 </tr>
-                @foreach (var movie in Model) {
-                    <tr>
-                        <td><a href="/Movie/Details/@movie.Id"> @movie.Title</a></td>
-                        <td>@movie.Rank</td>
-                        <td>@movie.Year</td>
-                        <td>@movie.Genre</td>
-                    </tr>
-                }
+            </tbody>
+
+        </table>
+    </div>-->
+        <br />
+        <br />
+        <div ng-show="moviesTable.data.length < 1">
+            <p>There are no registered Movies yet.</p>
+        </div>
+        <div ng-hide="moviesTable.data.length < 1">
+       
+            <table ng-table="moviesTable" class="table" show-filter="true">
+                <tr ng-repeat="movie in $data">
+                    <td title="'Title'" filter="{ title: 'text'}" sortable="'title'">
+                        <a ng-href="/Movie/Details/{{movie.id}}"> {{movie.title}}</a>
+                    </td>
+                    <td title="'Rank'" filter="{ rank: 'number'}" sortable="'rank'">
+                        {{movie.rank}}
+                    </td>
+                    <td title="'Year'" filter="{ year: 'number'}" sortable="'year'">
+                        {{movie.year}}
+                    </td>
+                    <td title="'Genre'" sortable="'genre'">
+                        {{movie.genre}}
+                    </td>
+                </tr>
             </table>
-        }
+        </div>
     </div>
 
 
     @*@Html.ActionLink("Add a new movie", "Create", "Movie", new { area = "" }, new { @class = "btn btn-default" })*@
-    
+
     <a href="@Url.Action("Create", "Movie")" class="btn btn-warning">
         <i class="fas fa-plus-square"></i>
         <span>

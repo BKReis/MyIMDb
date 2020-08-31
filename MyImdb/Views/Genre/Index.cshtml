@@ -1,25 +1,19 @@
-﻿@model List<MyImdb.ViewModels.GenreViewModel>
-@{
+﻿@using System.Web.Optimization @{
     ViewBag.Title = "Genres"; }
-<br />
-<h1><span class="fas fa-ticket-alt"></span> Genres</h1>
-@if (Model.Count < 1) {
-    <p>There are no registered Genres yet.</p>
-}
-else {
-    if (ViewBag.Message != null) {
-        <div class="alert alert-info">
-            <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
-        </div>
-    }
-    <p>Registered genres:</p>
-    <ul style="margin-top: 20px;">
-        @foreach (var genre in Model) {
-            <li style="margin-top: 15px;"><a href="/Genre/Edit/@genre.Id">@genre.Name</a></li>
-        }
-    </ul>
-}
-
-<div style="margin-top: 20px;">
-    <a href="/Genre/Create" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;Add genre</a>
-</div>
+@section libs { @Scripts.Render("~/bundles/genres") 
+                @Scripts.Render("~/bundles/dialog") }
+<div ng-controller="genresController" block-ui="genresContentDiv">
+    <h2>Genres</h2>
+    <div ng-show="genres.length < 1">
+        <p>There are no registered Genres yet.</p>
+    </div>
+    <div ng-hide="genres.length < 1">
+        <p>Registered genres:</p>
+        <ul class="top-space-lg">
+            <li class="top-space-md" ng-repeat="genre in genres"><a ng-href="/Genre/Edit/{{genre.id}}" ng-bind="genre.name"></a></li>
+        </ul>
+    </div>
+    <div class="top-space-lg">
+        <a href="/Genre/Create" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;Add genre</a>
+    </div>
+</div> 

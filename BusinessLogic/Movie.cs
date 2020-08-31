@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.Entity;
+using Api.Movie;
 
 namespace BusinessLogic {
     [Table("Movies")]
@@ -36,16 +37,27 @@ namespace BusinessLogic {
                 CreationDateUtc = value.UtcDateTime;
             }
         }
+
+        public MovieSimpleModel ToModel() {
+            var model = new MovieSimpleModel() {
+                Id = Id,
+                Title = Title,
+                Rank = Rank,
+                Year = Year,
+                Genre = Genre.Name
+            };
+            return model;
+        }
         #region RETRIEVE
         public static List<Movie> SelectAll(ApplicationDbContext db) {
             var movies = db.Movies.ToList();
             return movies;
         }
 
-        public static List<MovieSimpleDto> SelectSimple(ApplicationDbContext db) {
+        public static List<MovieSimpleModel> SelectSimple(ApplicationDbContext db) {
             var result = from m in db.Movies
                          join g in db.Genres on m.GenreId equals g.Id
-                         select new MovieSimpleDto {
+                         select new MovieSimpleModel {
                              Id = m.Id,
                              Title = m.Title,
                              Rank = m.Rank,
@@ -56,7 +68,7 @@ namespace BusinessLogic {
         }
 
         public static MovieDetailedDto DetailedMovie(Guid id, ApplicationDbContext db) {
-            var movie = db.Movies.FirstOrDefault(m => m.Id == id);
+            var movie = db.Movies.FirstOrDefault(m => m.Id == id); // include and theninclude
             if (movie == null) {
                 throw new Exception("The movie was not found.");
             }
@@ -78,6 +90,14 @@ namespace BusinessLogic {
             };
             return result;
         }
+
+        //public static List<Movie> IncludeSelectAll(ApplicationDbContext db) {
+        //    var result = db.Movies
+        //        .Include(m => m.Genres)
+        //        .ToList();
+        //    return result.ToList();
+        //}
+
 
         public static Movie SelectById(Guid id, ApplicationDbContext db) {
             var movie = db.Movies.FirstOrDefault(m => m.Id == id);

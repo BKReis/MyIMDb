@@ -13,3 +13,8 @@ C:\Projetos\MyImdb\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
 C:\Projetos\MyImdb\BusinessLogic\obj\Debug\BusinessLogic.Migrations.Initial.resources
 C:\Projetos\MyImdb\BusinessLogic\obj\Debug\BusinessLogic.csproj.GenerateResource.cache
 C:\Projetos\MyImdb\BusinessLogic\obj\Debug\BusinessLogic.Migrations.Actors.resources
+C:\Projetos\MyImdb\BusinessLogic\bin\Debug\Api.dll
+C:\Projetos\MyImdb\BusinessLogic\bin\Debug\Api.pdb
+C:\Projetos\MyImdb\BusinessLogic\bin\Debug\Api.dll.config
+C:\Projetos\MyImdb\BusinessLogic\bin\Debug\NLog.dll
+C:\Projetos\MyImdb\BusinessLogic\bin\Debug\NLog.xml

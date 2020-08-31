@@ -91,3 +91,14 @@ C:\Projetos\MyImdb\MyImdb\bin\Owin.dll
 C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.xml
 C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Projetos\MyImdb\MyImdb\bin\Microsoft.Owin.Security.xml
+C:\Projetos\MyImdb\MyImdb\bin\System.Net.Http.Formatting.dll
+C:\Projetos\MyImdb\MyImdb\bin\System.Web.Http.dll
+C:\Projetos\MyImdb\MyImdb\bin\System.Web.Http.WebHost.dll
+C:\Projetos\MyImdb\MyImdb\bin\System.Net.Http.Formatting.xml
+C:\Projetos\MyImdb\MyImdb\bin\System.Web.Http.xml
+C:\Projetos\MyImdb\MyImdb\bin\System.Web.Http.WebHost.xml
+C:\Projetos\MyImdb\MyImdb\bin\Api.dll
+C:\Projetos\MyImdb\MyImdb\bin\Api.pdb
+C:\Projetos\MyImdb\MyImdb\bin\Api.dll.config
+C:\Projetos\MyImdb\MyImdb\bin\NLog.dll
+C:\Projetos\MyImdb\MyImdb\bin\NLog.xml

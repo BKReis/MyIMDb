@@ -13,20 +13,22 @@ namespace MyImdb.Controllers
     public class MovieController : Controller
     {
         // GET: Movie
-        public ActionResult Index(string msg = null)
-        {
-            using (var db = new ApplicationDbContext()) {
-                var movies = Movie.SelectSimple(db).ConvertAll(m => new MovieListViewModel() {
-                    Id = m.Id,
-                    Rank = m.Rank,
-                    Title = m.Title,
-                    Year = m.Year,
-                    Genre = m.Genre
-                }); ;
-                ViewBag.Message = msg;
-                return View(movies);
-            }
-           }
+        //public ActionResult Index(string msg = null)
+        //{
+        //    using (var db = new ApplicationDbContext()) {
+        //        var movies = Movie.SelectSimple(db).ConvertAll(m => new MovieListViewModel() {
+        //            Id = m.Id,
+        //            Rank = m.Rank,
+        //            Title = m.Title,
+        //            Year = m.Year,
+        //            Genre = m.Genre
+        //        }); ;
+        //        ViewBag.Message = msg;
+        //        return View(movies);
+        //    }
+        //   }
+
+        public ActionResult Index() { return View(); }
 
         public ActionResult MovieOfTheMonth() {
             return View();

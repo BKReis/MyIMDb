@@ -1,7 +1,7 @@
 ﻿@using System.Web.Optimization;
 
 <!DOCTYPE html>
-<html>
+<html ng-app="myIMDBApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,5 +36,12 @@
         </footer>
     </div>
     @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/uiBootstrap")
+<div>
+    @Scripts.Render("~/bundles/app") 
+    @RenderSection("libs", required: false)
+</div>
 </body>
 </html>

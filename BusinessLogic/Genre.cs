@@ -1,4 +1,6 @@
-﻿using BusinessLogic.Data;
+﻿using Api.Genre;
+using BusinessLogic.Data;
+using BusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,7 +29,7 @@ namespace BusinessLogic {
         public static Genre SelectById(Guid id, ApplicationDbContext db) {
             var genre = db.Genres.FirstOrDefault(g => g.Id == id);
             if (genre == null) {
-                throw new Exception("The genre was not found.");
+                throw new ErrorModelException(ErrorCodes.GenreNotFound);
             }
             return genre;
         }
@@ -39,11 +41,21 @@ namespace BusinessLogic {
         }
         #endregion
 
+        #region MODEL
+        public GenreModel ToModel() {
+            var model = new GenreModel() {
+                Id = Id,
+                Name = Name
+            };
+            return model;
+        }
+        #endregion
+
 
         #region STATIC
         public static Genre Create(string name, ApplicationDbContext db) {
             if (db.Genres.Count(m => m.Name == name) > 0) {
-                throw new Exception(string.Format("The genre with name {0} already exists.", name));
+                throw new ErrorModelException(ErrorCodes.GenreAlreadyExists, name);
             }
              var genre = new Genre() {
                 Id = Guid.NewGuid(),
@@ -57,7 +69,7 @@ namespace BusinessLogic {
         public static Genre Update(Guid id, string name, ApplicationDbContext db) {
             var genre = SelectById(id, db);
             if (db.Genres.Count(g => g.Name == name && g.Id != id) > 0) {
-                throw new Exception(string.Format("The genre {0} already exists.", name));
+                throw new ErrorModelException(ErrorCodes.GenreAlreadyExists, name);
             }
             genre.Name = name;
             db.SaveChanges();

@@ -10,16 +10,20 @@ using System.Web.Mvc;
 namespace MyImdb.Controllers {
     public class GenreController : Controller {
         // GET: Genre
-        public ActionResult Index(string msg = null) {
-            using (var db = new ApplicationDbContext()) {
-                var genres = Genre.SelectAll(db).ConvertAll(g => new GenreViewModel() {
-                    Id = g.Id,
-                    Name = g.Name
-                });
-                ViewBag.Message = msg;
-                return View(genres);
-            }
-        }
+        //public ActionResult Index(string msg = null) {
+        //    using (var db = new ApplicationDbContext()) {
+        //        var genres = Genre.SelectAll(db).ConvertAll(g => new GenreViewModel() {
+        //            Id = g.Id,
+        //            Name = g.Name
+        //        });
+        //        ViewBag.Message = msg;
+        //        return View(genres);
+        //    }
+        //}
+
+        public ActionResult Index() { return View(); }
+
+        public ActionResult Create() { return View(); }
 
         public ActionResult Edit(Guid id) {
             using (var db = new ApplicationDbContext()) {
@@ -54,27 +58,27 @@ namespace MyImdb.Controllers {
             }
         }
 
-        public ActionResult Create() {
-            var model = new GenreCreateViewModel();
-            return View(model);
-        }
+        //public ActionResult Create() {
+        //    var model = new GenreCreateViewModel();
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public ActionResult Create(GenreCreateViewModel model) {
-            if (!ModelState.IsValid) {
-                return View(model);
-            }
-            using (var db = new ApplicationDbContext()) {
-                try {
-                    Genre.Create(model.Name, db);
-                    return RedirectToAction(nameof(Index), new { msg = "Genre created with success." });
-                }
-                catch (Exception e) {
-                    ViewBag.Error = e.Message;
-                    return View(model);
-                }
-            }
-        }
+        //[HttpPost]
+        //public ActionResult Create(GenreCreateViewModel model) {
+        //    if (!ModelState.IsValid) {
+        //        return View(model);
+        //    }
+        //    using (var db = new ApplicationDbContext()) {
+        //        try {
+        //            Genre.Create(model.Name, db);
+        //            return RedirectToAction(nameof(Index), new { msg = "Genre created with success." });
+        //        }
+        //        catch (Exception e) {
+        //            ViewBag.Error = e.Message;
+        //            return View(model);
+        //        }
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult Edit(GenreViewModel model) {
