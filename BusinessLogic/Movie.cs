@@ -1,5 +1,4 @@
 ﻿using BusinessLogic.Data;
-using BusinessLogic.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Api.Movie;
+using Api.MovieActor;
 
 namespace BusinessLogic {
     [Table("Movies")]
@@ -48,6 +48,28 @@ namespace BusinessLogic {
             };
             return model;
         }
+        public MovieDetailedModel ToDetailedModel() {
+            var model = new MovieDetailedModel() {
+                Id = Id,
+                Title = Title,
+                Rank = Rank,
+                Year = Year,
+                Genre = Genre.Name,
+                SelectedGenreId = Genre.Id,
+                Storyline = Storyline,
+                Actors = new List<MovieActorModel>()
+            };
+            foreach (var movieActor in MovieActors) {
+                model.Actors.Add(new MovieActorModel() {
+                    Id = movieActor.Id,
+                    Name = movieActor.Actor.Name,
+                    Character = movieActor.Character
+                });
+            };
+            return model;
+        }
+
+
         #region RETRIEVE
         public static List<Movie> SelectAll(ApplicationDbContext db) {
             var movies = db.Movies.ToList();
@@ -67,12 +89,12 @@ namespace BusinessLogic {
             return result.ToList();
         }
 
-        public static MovieDetailedDto DetailedMovie(Guid id, ApplicationDbContext db) {
+        public static MovieDetailedModel DetailedMovie(Guid id, ApplicationDbContext db) {
             var movie = db.Movies.FirstOrDefault(m => m.Id == id); // include and theninclude
             if (movie == null) {
                 throw new Exception("The movie was not found.");
             }
-            var result = new MovieDetailedDto {
+            var result = new MovieDetailedModel {
                 Id = movie.Id,
                 Genre = movie.Genre.Name,
                 Title = movie.Title,
@@ -80,9 +102,10 @@ namespace BusinessLogic {
                 Year = movie.Year,
                 Storyline = movie.Storyline
             };
-            result.Actors = new List<ActorNameCharacterDto>();
+            //result.Actors = new List<ActorNameCharacterDto>();
+            result.Actors = new List<MovieActorModel>();
             foreach(var movieActor in movie.MovieActors) {
-                result.Actors.Add(new ActorNameCharacterDto() { 
+                result.Actors.Add(new MovieActorModel() { 
                     Id = movieActor.Id,
                     Name = movieActor.Actor.Name,
                     Character = movieActor.Character

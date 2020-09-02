@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MyImdb.ViewModels {
-    public class ActorCreateViewModel {
+namespace Api.Actor {
+    public class ActorPostRequest {
         [Required(ErrorMessage = "Name of the actor is required")]
         [MaxLength(100, ErrorMessage = "Name of the actor can't be greater than {1} characters")]
         public string Name { get; set; }
@@ -13,6 +13,5 @@ namespace MyImdb.ViewModels {
         [Required(ErrorMessage = "Birthplace of the actor is required")]
         [MaxLength(100, ErrorMessage = "Birthplace of the actor can't be greater than {1} characters")]
         public string Birthplace { get; set; }
-
     }
 }

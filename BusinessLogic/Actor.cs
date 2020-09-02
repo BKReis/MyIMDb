@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Data;
+﻿using Api.Actor;
+using BusinessLogic.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +38,18 @@ namespace BusinessLogic {
             var characters = db.MovieActors.Where(c => c.ActorId == id).Select(m => m.Character).ToList();
 
             return characters;
+        }
+        #endregion
+
+
+        #region MODEL
+        public ActorModel ToModel() {
+            var model = new ActorModel() {
+                Id = Id,
+                Name = Name,
+                Birthplace = Birthplace
+            };
+            return model;
         }
         #endregion
 

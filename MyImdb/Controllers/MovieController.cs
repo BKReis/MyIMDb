@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogic;
 using BusinessLogic.Data;
-using MyImdb.ViewModels;
 using System.Data.Entity;
 
 namespace MyImdb.Controllers
@@ -30,148 +29,58 @@ namespace MyImdb.Controllers
 
         public ActionResult Index() { return View(); }
 
-        public ActionResult MovieOfTheMonth() {
-            return View();
-        }
+        public ActionResult Create() { return View(); }
+        public ActionResult Edit() { return View(); }
+        public ActionResult Delete() { return View(); }
 
-        public ActionResult Create() {
-            using (var db = new ApplicationDbContext()) {
-                var genres = Genre.SelectAll(db);
-                var model = new MovieCreateViewModel() {
-                    Genres = genres.ConvertAll(g => new GenreViewModel() {
-                        Id = g.Id, Name = g.Name
-                    })
-                    };
-                return View(model);
-            }
-        }
-        public ActionResult Edit(Guid id) {
-            using (var db = new ApplicationDbContext()) {
-                var model = new MovieViewModel();
-                model.Genres = Genre.SelectAll(db).ConvertAll(g => new GenreViewModel() {
-                    Id = g.Id,
-                    Name = g.Name
-                });
-                if (!ModelState.IsValid) {
-                    return View(model);
-                }
-                try {
-                    var movie = Movie.SelectById(id, db);
-                    model.Id = movie.Id;
-                    model.Rank = movie.Rank;
-                    model.Title = movie.Title;
-                    model.Year = movie.Year;
-                    model.StoryLine = movie.Storyline;
-                    model.SelectedGenreId = movie.Genre.Id;
-                }
-                catch (Exception e) {
-                    ViewBag.Error = e.Message;
-                }
-                return View(model);
-            }
-        }
+        public ActionResult Details() { return View(); }
 
-        public ActionResult Delete(Guid id) {
-            using (var db = new ApplicationDbContext()) {
-                var model = new MovieDeleteViewModel();
-                try {
-                    var movie = Movie.SelectById(id, db);
-                    model.Movie = new MovieListViewModel() {
-                       Id = movie.Id,
-                       Title = movie.Title
-                    };
-                    model.Characters = Movie.CharactersRelation(movie.Id, db);
-                }
-                catch (Exception e) {
-                    ViewBag.Error = e.Message;
-                }
-                return View(model);
-            }
-        }
+        public ActionResult MovieOfTheMonth() { return View();}
 
-        public ActionResult Details(Guid id) {
-            using (var db = new ApplicationDbContext()) {
-                var model = new MovieDetailedViewModel();
-                try {
-                    var movie = Movie.DetailedMovie(id, db);
-                    model.Id = movie.Id;
-                    model.Rank = movie.Rank;
-                    model.Title = movie.Title;
-                    model.Year = movie.Year;
-                    model.StoryLine = movie.Storyline;
-                    model.Genre = movie.Genre; 
-                    model.Actors = movie.Actors.ConvertAll(a => new CharacterActorListViewModel() {
-                        Id = a.Id,
-                        Name = a.Name,
-                        Character = a.Character
-                    });
-                }
-                catch (Exception e) {
-                    ViewBag.Error = e.Message;
-                }
-                return View(model);
-            }
-        }
+        //public ActionResult Details(Guid id) {
+        //    using (var db = new ApplicationDbContext()) {
+        //        var model = new MovieDetailedViewModel();
+        //        try {
+        //            var movie = Movie.DetailedMovie(id, db);
+        //            model.Id = movie.Id;
+        //            model.Rank = movie.Rank;
+        //            model.Title = movie.Title;
+        //            model.Year = movie.Year;
+        //            model.StoryLine = movie.Storyline;
+        //            model.Genre = movie.Genre; 
+        //            model.Actors = movie.Actors.ConvertAll(a => new CharacterActorListViewModel() {
+        //                Id = a.Id,
+        //                Name = a.Name,
+        //                Character = a.Character
+        //            });
+        //        }
+        //        catch (Exception e) {
+        //            ViewBag.Error = e.Message;
+        //        }
+        //        return View(model);
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult Create(MovieCreateViewModel model) {
-            using (var db = new ApplicationDbContext()) {
-                model.Genres = Genre.SelectAll(db).ConvertAll(g => new GenreViewModel() {
-                    Id = g.Id,
-                    Name = g.Name
-                });
-                if (!ModelState.IsValid) {
-                    return View(model);
-                }
-                try {
-                    Movie.Create(model.Rank, model.Title, model.Year, model.StoryLine, model.SelectedGenreId, db);
-                    return RedirectToAction(nameof(Index), new { msg = "Movie created with success." });
-                }
-                catch (Exception e) {
-                    ViewBag.Error = e.Message;
-                    return View(model);
-                }
-            }
-        }
+        //[HttpPost]
+        //public ActionResult Create(MovieCreateViewModel model) {
+        //    using (var db = new ApplicationDbContext()) {
+        //        model.Genres = Genre.SelectAll(db).ConvertAll(g => new GenreViewModel() {
+        //            Id = g.Id,
+        //            Name = g.Name
+        //        });
+        //        if (!ModelState.IsValid) {
+        //            return View(model);
+        //        }
+        //        try {
+        //            Movie.Create(model.Rank, model.Title, model.Year, model.StoryLine, model.SelectedGenreId, db);
+        //            return RedirectToAction(nameof(Index), new { msg = "Movie created with success." });
+        //        }
+        //        catch (Exception e) {
+        //            ViewBag.Error = e.Message;
+        //            return View(model);
+        //        }
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult Edit(MovieViewModel model) {
-
-            if (!ModelState.IsValid) {
-                return View(model);
-            }
-            using (var db = new ApplicationDbContext()) {
-
-                try {
-                    Movie.Update(model.Id, model.Rank, model.Title, model.Year, model.StoryLine, model.SelectedGenreId, db);
-                    return RedirectToAction(nameof(Index), new { msg = "Movie updated with success." });
-                }
-                catch (Exception e) {
-                    model.Genres = Genre.SelectAll(db).ConvertAll(g => new GenreViewModel() {
-                        Id = g.Id,
-                        Name = g.Name
-                    });
-                    ViewBag.Error = e.Message;
-                    return View(model);
-                }
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Delete(MovieDeleteViewModel model) {
-            if (!ModelState.IsValid) {
-                return View(model);
-            }
-            using (var db = new ApplicationDbContext()) {
-                try {
-                    Movie.Delete(model.Movie.Id, db);
-                    return RedirectToAction(nameof(Index), new { msg = "Movie deleted with success." });
-                }
-                catch (Exception e) {
-                    ViewBag.Error = e.Message;
-                    return View(model);
-                }
-            }
-        }
     }
 }

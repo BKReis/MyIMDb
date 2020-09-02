@@ -3,14 +3,13 @@
     var init = function () {
         //Initial code
         $scope.genres = items
-
+        console.log("AAAAAAAAAAAAAA");
         if ($scope.genres.length == 0) {
             console.log("Entrou no if")
             loadGenres();
         } 
     };
     var loadGenres = function (genres) {
-        console.log("dEU CERTO")
         var eblock = blockUI.instances.get('genresContentDiv');
         eblock.start();
         $http.get('/Api/Genres').then(function (response) {

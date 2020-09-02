@@ -162,6 +162,7 @@
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
+    <Compile Include="Controllers\API\ActorController.cs" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-block-ui.js" />
@@ -175,6 +176,16 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\actorEdit.js" />
+    <Content Include="Scripts\app\actorDelete.js" />
+    <Content Include="Scripts\app\movieActorEdit.js" />
+    <Content Include="Scripts\app\movieActorDelete.js" />
+    <Content Include="Scripts\app\movieActorCreate.js" />
+    <Content Include="Scripts\app\movieDetails.js" />
+    <Content Include="Scripts\app\movieDelete.js" />
+    <Content Include="Scripts\app\movieEdit.js" />
+    <Content Include="Scripts\app\genreDelete.js" />
+    <Content Include="Scripts\app\genreEdit.js" />
     <Content Include="Scripts\app\genreCreate.js" />
     <Content Include="Scripts\app\genres.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -238,6 +249,7 @@
     <Compile Include="Attributes\HandleExceptionsAttribute.cs" />
     <Compile Include="Attributes\ValidateModelStateAttribute.cs" />
     <Compile Include="Controllers\ActorController.cs" />
+    <Compile Include="Controllers\API\MovieActorController.cs" />
     <Compile Include="Controllers\API\GenreController.cs" />
     <Compile Include="Controllers\API\MovieController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
@@ -253,21 +265,9 @@
     <Content Include="Scripts\app\lib.js" />
     <Content Include="Scripts\app\Dialog\favoriteGenre.js" />
     <Content Include="Scripts\app\movies.js" />
-    <Compile Include="ViewModels\ActorViewModel.cs" />
-    <Compile Include="ViewModels\ActorCreateViewModel.cs" />
-    <Compile Include="ViewModels\CharacterActorListViewModel.cs" />
-    <Compile Include="ViewModels\ActorDeleteViewModel.cs" />
-    <Compile Include="ViewModels\MovieActorViewModel.cs" />
-    <Compile Include="ViewModels\MovieActorDeleteViewModel.cs" />
-    <Compile Include="ViewModels\MovieActorCreateViewModel.cs" />
-    <Compile Include="ViewModels\MovieDetailedViewModel.cs" />
-    <Compile Include="ViewModels\MovieViewModel.cs" />
-    <Compile Include="ViewModels\GenreDeleteViewModel.cs" />
-    <Compile Include="ViewModels\GenreCreateViewModel.cs" />
-    <Compile Include="ViewModels\GenreViewModel.cs" />
-    <Compile Include="ViewModels\MovieCreateViewModel.cs" />
-    <Compile Include="ViewModels\MovieListViewModel.cs" />
-    <Compile Include="ViewModels\MovieDeleteViewModel.cs" />
+    <Content Include="Scripts\app\movieCreate.js" />
+    <Content Include="Scripts\app\actors.js" />
+    <Content Include="Scripts\app\actorCreate.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

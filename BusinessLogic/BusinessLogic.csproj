@@ -52,8 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor.cs" />
-    <Compile Include="Dto\ActorNameCharacterDto.cs" />
-    <Compile Include="Dto\MovieDetailedDto.cs" />
     <Compile Include="Exceptions\ErrorModelException.cs" />
     <Compile Include="Migrations\202008252012563_Actors.cs" />
     <Compile Include="Migrations\202008252012563_Actors.designer.cs">

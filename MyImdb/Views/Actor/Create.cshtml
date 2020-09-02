@@ -1,53 +1,44 @@
-﻿@model MyImdb.ViewModels.ActorCreateViewModel
+﻿@using System.Web.Optimization @{
+    ViewBag.Title = "Add Actor"; }
+@section libs { @Scripts.Render("~/bundles/actorCreate") }
+<div ng-controller="actorCreateController">
+    <br />
+    <h1><span class="fas fa-user"></span> Add a new Actor</h1>
+    <h4>Please fill the actor data to add a new actor:</h4>
 
-
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2><span class="fas fa-user"></span> Add a new Actor</h2>
-@if (ViewBag.Error != null) {
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-danger">
-                <p><i class="fa fa-warning"></i>&nbsp;@ViewBag.Error</p>
+    <form name="actorCreateForm" ng-submit="save(actorCreateForm)" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-horizontal">
+                    <div form-group="name">
+                        <label for="actorName" class="control-label col-md-2">Name</label>
+                        <div class="col-md-10">
+                            <input type="text" id="actorName" name="name" class="form-control" ng-model="actor.name" required ng-maxlength="100" />
+                            <p error="name" type="required">The name is required.</p>
+                            <p error="name" type="maxlength">The name must have a maximum of 100 characters.</p>
+                            <p srv-error="name"></p>
+                        </div>
+                    </div>
+                    <div form-group="birthplace">
+                        <label for="actorBirthplace" class="control-label col-md-2">Birthplace</label>
+                        <div class="col-md-10">
+                            <input type="text" id="actorBirthplace" name="birthplace" class="form-control" ng-model="actor.birthplace" required ng-maxlength="100" />
+                            <p error="birthplace" type="required">The birthplace is required.</p>
+                            <p error="birthplace" type="maxlength">The birthplace must have a maximum of 100 characters.</p>
+                            <p srv-error="birthplace"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-warning"><i class="fa fa-check"></i>&nbsp;Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </form>
+    <div class="top-space-xl">
+        <a href="/Actor"><i class="fa fa-chevron-left"></i>&nbsp;Back to Actors</a>
     </div>
-}
-<h4>Please fill the actor data to add a new actor:</h4>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Birthplace, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Birthplace, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Birthplace, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-warning" />
-        </div>
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 

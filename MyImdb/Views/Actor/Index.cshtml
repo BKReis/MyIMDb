@@ -1,25 +1,19 @@
-﻿@model List<MyImdb.ViewModels.ActorViewModel>
-@{
+﻿@using System.Web.Optimization @{
     ViewBag.Title = "Actors"; }
-<br />
-<h1><span class="fas fa-users"></span> Actors</h1>
-@if (Model.Count < 1) {
-    <p>There are no registered Actors yet.</p>
-}
-else {
-    if (ViewBag.Message != null) {
-        <div class="alert alert-info">
-            <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
+@section libs { @Scripts.Render("~/bundles/actors") }
+<div ng-controller="actorsController" block-ui="genresContentDiv">
+    <br />
+    <h1><span class="fas fa-users"></span> Actors</h1>
+        <div ng-show="genres.length < 1">
+            <p>There are no registered Actors yet.</p>
         </div>
-    }
-    <p>Registered actors:</p>
-    <ul style="margin-top: 20px;">
-        @foreach (var actor in Model) {
-            <li style="margin-top: 15px;"><a href="/Actor/Edit/@actor.Id">@actor.Name</a></li>
-        }
-    </ul>
-}
-
-<div style="margin-top: 20px;">
-    <a href="/Actor/Create" class="btn btn-warning"><i class="fa fa-plus"></i>&nbsp;Add actor</a>
-</div>
+        <div ng-hide="genres.length < 1">
+            <p>Registered actors:</p>
+            <ul class="top-space-lg">
+                <li class="top-space-md" ng-repeat="actor in actors"><a ng-href="/Actor/Edit/{{actor.id}}" ng-bind="actor.name"></a></li>
+            </ul>
+        </div>
+        <div class="top-space-lg">
+            <a href="/Actor/Create" class="btn btn-warning"><i class="fa fa-plus"></i>&nbsp;Add actor</a>
+        </div>
+</div> 

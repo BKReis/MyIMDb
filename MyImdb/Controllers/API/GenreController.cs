@@ -3,7 +3,6 @@ using BusinessLogic;
 using BusinessLogic.Data;
 using BusinessLogic.Exceptions;
 using MyImdb.Attributes;
-using MyImdb.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +33,26 @@ namespace MyImdb.Controllers.API
             using (var db = new ApplicationDbContext()) {
                 var genre = Genre.SelectById(id, db);
                 return Ok(genre.ToModel());
+            }
+        }
+
+        [HttpGet]
+        [Route("Api/Genres/{id}/MovieTitles")]
+        [ResponseType(typeof(List<string>))]
+        public IHttpActionResult MovieTitles(Guid id) {
+            using (var db = new ApplicationDbContext()) {
+                var movieTitles = Genre.MovieTitles(id, db);
+                return Ok(movieTitles);
+            }
+        }
+
+        [HttpGet]
+        [Route("Api/Actors/{id}/Characters")]
+        [ResponseType(typeof(List<string>))]
+        public IHttpActionResult Characters(Guid id) {
+            using (var db = new ApplicationDbContext()) {
+                var characters = Actor.CharactersRelation(id, db);
+                return Ok(characters);
             }
         }
         #endregion

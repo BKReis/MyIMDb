@@ -1,18 +1,9 @@
-﻿@model MyImdb.ViewModels.MovieDetailedViewModel
-
-@{
-    ViewBag.Title = "Detailed Movie";
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>MovieDetails</title>
-</head>
-<body>
-
+﻿@*@using System.Web.Optimization @{
+    ViewBag.Title = "Movie Details";}*@
+@using System.Web.Optimization @{
+    ViewBag.Title = "Movie Details"; }
+@section libs { @Scripts.Render("~/bundles/movieDetails") }
+<div ng-controller="movieDetailsController">
     <br />
     <br />
     <div>
@@ -20,50 +11,41 @@
             <div class="row">
                 <div class="col-md-4"><img src="~/Images/Shawsshank.jpg" w /></div>
                 <div class="col-md-6">
-                    <h2> @Model.Title (@Model.Year) <a href="/Movie/Edit/@Model.Id"><span class="fas fa-edit"></span></a></h2>
-                    <h3> Genre: @Model.Genre</h3>
-                    <h3> Rank: @Model.Rank</h3>
-                    <small> @Model.StoryLine</small>
+                    <h2> {{movie.title}} ({{movie.year}}) <a href="/Movie/Edit/{{movie.id}}"><span class="fas fa-edit"></span></a></h2>
+                    <h3> Genre: {{movie.genre}}</h3>
+                    <h3> Rank: {{movie.rank}}</h3>
+                    <small> {{movie.storyline}}</small>
 
                 </div>
             </div>
         </div>
     </div>
-    @if (Model.Actors.Count < 1) {
+    <div ng-show="movie.actors.length < 1">
         <h1> Cast</h1>
         <h3> There are no registered Actors to this move yet.</h3>
         <br />
-    }
-    else {
-        <br />
-        if (ViewBag.Message != null) {
-            <div class="alert alert-info">
-                <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
-            </div>
-        }
+    </div>
+    <div ng-hide="movie.actors.length < 1">
         <h1><span class="fas fa-film"></span> Cast</h1>
         <br />
         <table class="table table-striped">
-            <tr>
-                <th>Actor Name</th>
-                <th>Character</th>
-
-            </tr>
-            @foreach (var actor in Model.Actors) {
+            <thead></thead>
+            <tbody>
                 <tr>
-                    <td><a href="/MovieActor/Edit/@actor.Id"> @actor.Name</a></td>
-                    <td>@actor.Character</td>
-
+                    <td><b>Actor name</b></td>
+                    <td><b>Character</b></td>
                 </tr>
-            }
+                <tr ng-repeat="character in movie.actors">
+                    <td><a ng-href="/MovieActor/Edit/{{character.id}}">{{character.name}}</a></td>
+                    <td>{{character.character}}</td>
+                </tr>
+            </tbody>
         </table>
-    }
-    <a href="@Url.Action("Create", "MovieActor", new { movieId = Model.Id})" class="btn btn-warning">
+    </div>
+    <a href="/MovieActor/Create/{{movie.id}}" class="btn btn-warning">
         <i class="fas fa-plus-square"></i>
         <span>
             <strong>Add Actor</strong>
         </span>
     </a>
-
-</body>
-</html>
+</div> 

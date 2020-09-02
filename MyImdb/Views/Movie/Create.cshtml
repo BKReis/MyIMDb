@@ -1,78 +1,76 @@
-﻿@model MyImdb.ViewModels.MovieCreateViewModel
+﻿@using System.Web.Optimization @{
+    ViewBag.Title = "Add Movie"; }
+@section libs { @Scripts.Render("~/bundles/movieCreate") }
+<div ng-controller="movieCreateController">
+    <h2>Add Movie</h2>
+    <form name="movieCreateForm" ng-submit="save(movieCreateForm)" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-horizontal">
+                    <div form-group="title">
+                        <label for="titleName" class="control-label col-md-2">Title</label>
+                        <div class="col-md-10">
+                            <input type="text" id="movieTitle" name="title" class="form-control" ng-model="movie.title" required ng-maxlength="100" />
+                            <p error="title" type="required">The title is required.</p>
+                            <p error="title" type="maxlength">The title must have a maximum of 100 characteres.</p>
+                            <p srv-error="title"></p>
+                        </div>
+                    </div>
+                    <div form-group="rank">
+                        <label for="movieRank" class="control-label col-md-2">Rank</label>
+                        <div class="col-md-10">
+                            <input type="number" id="movieRank" name="rank" class="form-control" ng-model="movie.rank" required max="10" min="1" />
+                            <p error="name" type="required">The rank is required.</p>
+                            <p error="name" type="range">The rank must be between 1 and 10.</p>
+                            <p srv-error="rank"></p>
+                        </div>
+                    </div>
+                    <div form-group="year">
+                        <label for="movieYear" class="control-label col-md-2">Year</label>
+                        <div class="col-md-10">
+                            <input type="number" id="movieYear" name="year" class="form-control" ng-model="movie.year" required max="2020" min="1900" />
+                            <p error="year" type="required">The year is required.</p>
+                            <p error="year" type="range">The year must be between 1990 and 2020.</p>
+                            <p srv-error="year"></p>
+                        </div>
+                    </div>
+                    <div form-group="storyLine">
+                        <label for="movieStoryLine" class="control-label col-md-2">Story Line</label>
+                        <div class="col-md-10">
+                            <input type="text" id="movieStoryLine" name="storyLine" class="form-control" ng-model="movie.storyLine" required ng-maxlength="200" />
+                            <p error="storyLine" type="required">The story line is required.</p>
+                            <p error="storyLine" type="maxlength">The story line must have a maximum of 200 characters.</p>
+                            <p srv-error="storyLine"></p>
+                        </div>
+                    </div>
+                    <div form-group="genre">
+                        <label for="movieGenre" class="control-label col-md-2">Genre</label>
+                        <div class="col-md-10">
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                                    {{placeHolder}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="genre in genres"><a ng-click="selectGenre(genre.id, genre.name)">{{genre.name}}</a></li>
+                                </ul>
+                                <p error="genre" type="required">The genre is required.</p>
+                                <p srv-error="genre"></p>
+                            </div>
+                        </div>
+                    </div>
 
-@{
-    ViewBag.Title = "Create";
-}
 
-<h2><span class="fas fa-film"></span> Add a new movie</h2>
-@if (ViewBag.Error != null) {
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-danger">
-                <p><i class="fa fa-warning"></i>&nbsp;@ViewBag.Error</p>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-warning"><i class="fa fa-check"></i>&nbsp;Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-}
-<h4>Please fill the movie data to add a new movie:</h4>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-
-<div id="client" class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div id="create-form" class="form-group">
-        @Html.LabelFor(model => model.Rank, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Rank, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.StoryLine, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StoryLine, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.StoryLine, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SelectedGenreId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-8">
-            @Html.DropDownListFor(model => model.SelectedGenreId, new SelectList(Model.Genres, "id", "name", Model.SelectedGenreId), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.SelectedGenreId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-            <input type="button" value="Discard" class="btn btn-default" onclick="resetForm()">
-        </div>
-
+    </form>
+    <div class="top-space-xl">
+        <a href="/Movie"><i class="fa fa-chevron-left"></i>&nbsp;Back to Movies</a>
     </div>
 </div>
-}
 
-<div>
-    @Html.ActionLink("<< Back to movies list", "Index")
-</div>

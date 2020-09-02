@@ -3,7 +3,8 @@
 @section libs { @Scripts.Render("~/bundles/genres") 
                 @Scripts.Render("~/bundles/dialog") }
 <div ng-controller="genresController" block-ui="genresContentDiv">
-    <h2>Genres</h2>
+    <br />
+    <h1><span class="fas fa-film"></span> Genres</h1>
     <div ng-show="genres.length < 1">
         <p>There are no registered Genres yet.</p>
     </div>
@@ -14,6 +15,6 @@
         </ul>
     </div>
     <div class="top-space-lg">
-        <a href="/Genre/Create" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;Add genre</a>
+        <a href="/Genre/Create" class="btn btn-warning"><i class="fa fa-plus"></i>&nbsp;Add genre</a>
     </div>
 </div> 

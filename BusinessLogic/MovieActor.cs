@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Data;
+﻿using Api.MovieActor;
+using BusinessLogic.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,6 +23,19 @@ namespace BusinessLogic {
         public Guid ActorId { get; set; }
         public virtual Actor Actor { get; set; }
 
+
+        #region MODEL
+        public MovieActorModel ToModel() {
+            var model = new MovieActorModel() {
+                Id = Id,
+                Character = Character,
+                Name = Actor.Name,
+                SelectedActorId = ActorId,
+                SelectedMovieId = MovieId  
+            };
+            return model;
+        }
+        #endregion
 
         #region RETRIEVE
         public static MovieActor SelectById(Guid id, ApplicationDbContext db) {

@@ -10,26 +10,21 @@
         $http.get('/Api/Genres').then(function (response) {
             eblock.stop();
             $scope.genres = response.data;
-            openFavoriteGenreDialog();
+
         }, lib.handleError);
-        //}, function (response) {
-        //    eblock.stop();
-        //        alert('Error loading genres.');
-        //        notifyService.error('Error loading genres.');
-        //});
     };
 
-    var openFavoriteGenreDialog = function () {
-        var modalInstance = $uibModal.open({
-            templateUrl: '/Dialog/FavoriteGenre',
-            controller: 'favoriteGenreDialogController',
+    var openfavoritegenredialog = function () {
+        var modalinstance = $uibmodal.open({
+            templateurl: '/dialog/favoritegenre',
+            controller: 'favoritegenredialogcontroller',
             resolve: {
                 items: function () {
                     return $scope.genres;
                 }
             }
         });
-        modalInstance.result.then(function (msg) {
+        modalinstance.result.then(function (msg) {
         }, function (msg) {//dismiss callback
         });
     };

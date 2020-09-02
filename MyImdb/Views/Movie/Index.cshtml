@@ -13,42 +13,14 @@
 </head>
 <body>
     <div ng-controller="moviesController" block-ui="moviesContentDiv">
-        <!--<div ng-show="movies.length < 1">
-        <p>There are no registered Movies yet.</p>
-    </div>
-    <div ng-hide="movies.length < 1">
-        <br />-->
-        @*<div ng-show="ViewBag.Message != null" class="alert alert-info">
-            <p><span class="glyphicon glyphicon-ok"></span>&nbsp;@ViewBag.Message</p>
-        </div>*@
-
-        <!--<h1><span class="fas fa-film"></span> Movies</h1>
         <br />
-        <table class="table table-striped">
-            <tr>
-                <th>Title</th>
-                <th>Rank</th>
-                <th>Year</th>
-                <th>Genre</th>
-            </tr>
-            <tbody ng-repeat="movie in movies">
-                <tr>
-                    <td><a href="/Movie/Details/{{movie.id}}"> {{movie.title}}</a></td>
-                    <td>{{movie.rank}}</td>
-                    <td>{{movie.year}}</td>
-                    <td>{{movie.genre}}</td>
-                </tr>
-            </tbody>
-
-        </table>
-    </div>-->
-        <br />
+        <h1><span class="fas fa-film"></span> Movies</h1>
         <br />
         <div ng-show="moviesTable.data.length < 1">
             <p>There are no registered Movies yet.</p>
         </div>
         <div ng-hide="moviesTable.data.length < 1">
-       
+
             <table ng-table="moviesTable" class="table" show-filter="true">
                 <tr ng-repeat="movie in $data">
                     <td title="'Title'" filter="{ title: 'text'}" sortable="'title'">

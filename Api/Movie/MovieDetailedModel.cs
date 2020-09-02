@@ -1,17 +1,19 @@
-﻿using System;
+﻿using Api.Actor;
+using Api.MovieActor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace BusinessLogic.Dto {
-    public class MovieDetailedDto {
+namespace Api.Movie {
+    public class MovieDetailedModel {
         public Guid Id { get; set; }
         public int Rank { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
+        public Guid SelectedGenreId { get; set; }
         public string Genre { get; set; }
         public string Storyline { get; set; }
-        public List<ActorNameCharacterDto> Actors { get; set; }
+        public List<MovieActorModel> Actors { get; set; }
     }
 }
