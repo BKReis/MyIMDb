@@ -7,7 +7,7 @@ public static class WebApiConfig {
         
         //Filters
         config.Filters.Add(new HandleExceptionsAttribute());
-
+        config.Filters.Add(new MaintenanceModeFilterAttribute());
         // Web API routes
         config.MapHttpAttributeRoutes();
         config.Routes.MapHttpRoute(

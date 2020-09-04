@@ -1,0 +1,12 @@
+﻿.home-image {
+    height: 450px;
+    width: 300px;
+}
+
+.home-div{
+   text-align: center;
+}
+
+.detail-div{
+    background-color: gray;
+}

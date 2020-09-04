@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "_MaintenanceLayout.cshtml";
+}
+
+<h2>Initial Configuration</h2>
+<p>We're almost there! The database is up and running, all we need are the settings below.</p>
+<div class="alert alert-info" role="alert">
+	<b>Info:</b> From now on, the application only needs operational-level permissions over the database
+	(in Microsoft SQL Server, <b>db_datareader</b> and <b>db_datawriter</b> roles).
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<form method="post" action="/Maintenance/Configure">
+			@Html.ValidationSummary()
+			<div class="form-group">
+				<label for="adminUserNameInput">Admin email</label>
+				<input type="text" class="form-control" id="adminUserNameInput" name="email" value="admin@email.com" />
+			</div>
+			<div class="form-group">
+				<label for="adminPasswordInput">Admin password</label>
+				<input type="text" name="password" class="form-control" id="adminPasswordInput" placeholder="Password" />
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>

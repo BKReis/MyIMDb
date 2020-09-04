@@ -123,4 +123,16 @@
   <data name="GenreNotFound" xml:space="preserve">
     <value>The genre was not found.</value>
   </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>An error occurred during the login.</value>
+  </data>
+  <data name="UserActionForbidden" xml:space="preserve">
+    <value>Você não tem autorização para realizar essa ação.</value>
+  </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>An user with this email already exists.</value>
+  </data>
+  <data name="UserRegisterError" xml:space="preserve">
+    <value>An error has occurred registering this user : {0}</value>
+  </data>
 </root>

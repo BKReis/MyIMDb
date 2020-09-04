@@ -1,0 +1,21 @@
+﻿@{
+   Layout = "_MaintenanceLayout.cshtml";
+}
+
+<h2>
+	Database not accessible
+</h2>
+<p>
+	The database has been initialized successfully, but the application user cannot access it. Check that the application user has the following
+	permissions over the database:
+</p>
+<ul>
+	<li>Microsoft SQL Server: <b>db_datareader</b> and <b>db_datawriter</b> roles</li>
+	<li>Other databases: read/write permissions (contact support for specific permission names)</li>
+</ul>
+<p>
+	Once you have granted the necessary permissions to the application user, click the button below.
+</p>
+<form method="post" action="/Maintenance/CheckDatabase">
+	<button type="submit" class="btn btn-primary">Re-evaluate database state</button>
+</form>

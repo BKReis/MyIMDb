@@ -77,5 +77,41 @@ namespace Api.Resources {
                 return ResourceManager.GetString("GenreNotFound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred during the login..
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Você não tem autorização para realizar essa ação..
+        /// </summary>
+        public static string UserActionForbidden {
+            get {
+                return ResourceManager.GetString("UserActionForbidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An user with this email already exists..
+        /// </summary>
+        public static string UserAlreadyExists {
+            get {
+                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occurred registering this user : {0}.
+        /// </summary>
+        public static string UserRegisterError {
+            get {
+                return ResourceManager.GetString("UserRegisterError", resourceCulture);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Api.Actor;
+using Api.Comment;
 using Api.MovieActor;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace Api.Movie {
         public string Genre { get; set; }
         public string Storyline { get; set; }
         public List<MovieActorModel> Actors { get; set; }
+        public List<CommentModel> Comments { get; set; }
     }
 }

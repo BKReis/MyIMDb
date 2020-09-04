@@ -1,0 +1,27 @@
+﻿
+@using System.Web.Optimization @{
+    ViewBag.Title = "Delete Movie"; }
+@section libs { @Scripts.Render("~/bundles/movieDelete") }
+<div ng-controller="movieDeleteController">
+    <br />
+    <h1><span class="fas fa-film"></span> Delete Movie</h1>
+    <div ng-show="characters.length < 1">
+        <p>There are no registered characters to this movie.</p>
+    </div>
+    <div ng-hide="characters.length < 1">
+        <p>Deleting this movie will delete all characters associated with it.</p>
+        <p>Registered characters in {{movie.name}} are:</p>
+        <ul class="top-space-lg">
+            <li class="top-space-md" ng-repeat="character in characters" ng-bind="character"></li>
+        </ul>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-offset-2 col-md-6">
+            <button class="btn btn-danger" ng-click="delete()"><i class="fa fa-remove"></i>&nbsp;Delete</button> <a class="btn btn-default" href="/Movie/Edit/{{movie.id}}">Cancel</a>
+        </div>
+    </div>
+    <div class="top-space-xl">
+        <a href="/Movie"><i class="fa fa-chevron-left"></i>&nbsp;Back to Movies</a>
+    </div>
+</div>
+

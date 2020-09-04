@@ -74,11 +74,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AccountRegisterRequest.cs" />
+    <Compile Include="Account\AccountLoginRequest.cs" />
+    <Compile Include="Account\AccountInfoResponse.cs" />
     <Compile Include="Actor\ActorModel.cs" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor\Post.cs" />
+    <Compile Include="Comment\CommentModel.cs" />
+    <Compile Include="Comment\Post.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="ErrorModel.cs" />
     <Compile Include="Genre\GenreModel.cs" />

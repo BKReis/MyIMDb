@@ -53,16 +53,37 @@ namespace BusinessLogic {
 
 
         #region STATIC
-        public static Genre Create(string name, ApplicationDbContext db) {
-            if (db.Genres.Count(m => m.Name == name) > 0) {
+        //public static Genre Create(string name, ApplicationDbContext db) {
+        //    if (db.Genres.Count(m => m.Name == name) > 0) {
+        //        throw new ErrorModelException(ErrorCodes.GenreAlreadyExists, name);
+        //    }
+        //     var genre = new Genre() {
+        //        Id = Guid.NewGuid(),
+        //        Name = name
+        //    };
+        //    db.Genres.Add(genre);
+        //    db.SaveChanges();
+        //    return genre;
+        //}
+        public static async Task<Genre> CreateAsync(string name, Guid userId, ApplicationDbContext db, ApplicationUserManager userManager) {
+            if (db.Genres.Count(g => g.Name == name) > 0) {
                 throw new ErrorModelException(ErrorCodes.GenreAlreadyExists, name);
             }
-             var genre = new Genre() {
+            if (!await userManager.IsInRoleAsync(userId, ApplicationUserManager.Administrator)) {
+                throw new ErrorModelException(ErrorCodes.UserActionForbidden);
+            }
+            //var test = userManager.GetClaimsAsync(userId).Result.FirstOrDefault(c => c.Type == "IsAdmin");
+            //var test2 = test.Value;
+
+            if (!((await userManager.GetClaimsAsync(userId)).FirstOrDefault(c => c.Type == "IsAdmin").Value == ApplicationUserManager.IsAdminClaimValue)) {
+                throw new ErrorModelException(ErrorCodes.UserActionForbidden);
+            }
+            var genre = new Genre() {
                 Id = Guid.NewGuid(),
                 Name = name
             };
             db.Genres.Add(genre);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return genre;
         }
 

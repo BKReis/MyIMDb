@@ -1,0 +1,54 @@
+﻿@using System.Web.Optimization @{
+    ViewBag.Title = "Movies"; }
+@section libs { @Scripts.Render("~/bundles/movies")
+@Scripts.Render("~/bundles/dialog") }
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div ng-controller="moviesController" block-ui="moviesContentDiv">
+        <br />
+        <h1><span class="fas fa-film"></span> Movies</h1>
+        <br />
+        <div ng-show="moviesTable.data.length < 1">
+            <p>There are no registered Movies yet.</p>
+        </div>
+        <div ng-hide="moviesTable.data.length < 1">
+
+            <table ng-table="moviesTable" class="table" show-filter="true">
+                <tr ng-repeat="movie in $data">
+                    <td title="'Title'" filter="{ title: 'text'}" sortable="'title'">
+                        <a ng-href="/Movie/Details/{{movie.id}}"> {{movie.title}}</a>
+                    </td>
+                    <td title="'Rank'" filter="{ rank: 'number'}" sortable="'rank'">
+                        {{movie.rank}}
+                    </td>
+                    <td title="'Year'" filter="{ year: 'number'}" sortable="'year'">
+                        {{movie.year}}
+                    </td>
+                    <td title="'Genre'" sortable="'genre'">
+                        {{movie.genre}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    @*@Html.ActionLink("Add a new movie", "Create", "Movie", new { area = "" }, new { @class = "btn btn-default" })*@
+
+    <a href="@Url.Action("Create", "Movie")" class="btn btn-warning">
+        <i class="fas fa-plus-square"></i>
+        <span>
+            <strong>Create</strong>
+        </span>
+    </a>
+
+</body>
+</html>

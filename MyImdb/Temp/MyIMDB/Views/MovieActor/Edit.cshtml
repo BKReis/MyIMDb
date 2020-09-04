@@ -1,0 +1,50 @@
+﻿@using System.Web.Optimization @{
+    ViewBag.Title = "Edit MovieActor"; }
+@section libs { @Scripts.Render("~/bundles/movieActorEdit") }
+<div ng-controller="movieActorEditController">
+    <h2>Edit character</h2>
+    <form name="movieActorEditForm" ng-submit="save(movieActorEditForm)" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-horizontal">
+                    <div form-group="title">
+                        <label for="movieActorCharacter" class="control-label col-md-2">Character</label>
+                        <div class="col-md-10">
+                            <input type="text" id="movieActorCharacter" name="title" class="form-control" ng-model="movieActor.character" required ng-maxlength="100" />
+                            <p error="character" type="required">The character name is required.</p>
+                            <p error="character" type="maxlength">The character name must have a maximum of 100 characteres.</p>
+                            <p srv-error="character"></p>
+                        </div>
+                    </div>
+                    <div form-group="actor">
+                        <label for="movieActorActor" class="control-label col-md-2">Actor</label>
+                        <div class="col-md-10">
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                                    {{placeHolder}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="actor in actors"><a ng-click="selectActor(actor.id, actor.name)">{{actor.name}}</a></li>
+                                </ul>
+                                <p error="movieActorActor" type="required">The actor is required.</p>
+                                <p srv-error="movieActorActor"></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-warning"><i class="fa fa-check"></i>&nbsp;Save</button>
+                            <a class="btn btn-danger" href="/MovieActor/Delete/{{movieActor.id}}"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="top-space-xl">
+        <a href="/Movie"><i class="fa fa-chevron-left"></i>&nbsp;Back to Movies</a>
+    </div>
+</div>
+

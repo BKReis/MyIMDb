@@ -9,6 +9,11 @@ namespace MyImdb.App_Start {
         public static void RegisterBundles(BundleCollection bundles) {
             //app
             bundles.Add(new ScriptBundle("~/bundles/app").Include("~/Scripts/app/app.js", "~/Scripts/app/lib.js"));
+            bundles.Add(new ScriptBundle("~/bundles/accountLogin").Include("~/Scripts/app/accountLogin.js"));
+            bundles.Add(new ScriptBundle("~/bundles/accountRegister").Include("~/Scripts/app/accountRegister.js"));
+            bundles.Add(new ScriptBundle("~/bundles/commentCreate").Include("~/Scripts/app/commentCreate.js"));
+            bundles.Add(new ScriptBundle("~/bundles/commentEdit").Include("~/Scripts/app/commentEdit.js"));
+            bundles.Add(new ScriptBundle("~/bundles/commentDelete").Include("~/Scripts/app/commentDelete.js"));
             bundles.Add(new ScriptBundle("~/bundles/movies").Include("~/Scripts/app/movies.js"));
             bundles.Add(new ScriptBundle("~/bundles/movieCreate").Include("~/Scripts/app/movieCreate.js"));
             bundles.Add(new ScriptBundle("~/bundles/movieEdit").Include("~/Scripts/app/movieEdit.js"));

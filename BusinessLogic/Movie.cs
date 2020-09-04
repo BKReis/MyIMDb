@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Api.Movie;
 using Api.MovieActor;
+using Api.Comment;
 
 namespace BusinessLogic {
     [Table("Movies")]
@@ -23,6 +24,7 @@ namespace BusinessLogic {
         [MaxLength(200)]
         public string Storyline { get; set; }
         public virtual ICollection<MovieActor> MovieActors { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         [Required]
         public Guid GenreId { get; set; }
@@ -57,13 +59,23 @@ namespace BusinessLogic {
                 Genre = Genre.Name,
                 SelectedGenreId = Genre.Id,
                 Storyline = Storyline,
-                Actors = new List<MovieActorModel>()
+                Actors = new List<MovieActorModel>(),
+                Comments = new List<CommentModel>()
             };
             foreach (var movieActor in MovieActors) {
                 model.Actors.Add(new MovieActorModel() {
                     Id = movieActor.Id,
                     Name = movieActor.Actor.Name,
                     Character = movieActor.Character
+                });
+            };
+            foreach (var comment in Comments) {
+                model.Comments.Add(new CommentModel() {
+                    Id = comment.Id,
+                    Value = comment.Value,
+                    User = comment.User.Email,
+                    Movie = comment.Movie.Title,
+                    SelectedUserId = comment.User.Id
                 });
             };
             return model;
